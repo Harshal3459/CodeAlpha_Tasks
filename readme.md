@@ -26,22 +26,17 @@ To run this project, you need to have the following libraries installed:
 ## Setup Instructions
 
 Download the EMNIST ByClass dataset and place the emnist-byclass.mat file in the appropriate directory:
-
+for me it I uploaded to my google drive 
 
 /content/drive/MyDrive/Colab_Notebooks/Datasets/EMNIST/
-Open the Task1.ipynb notebook in your preferred environment (e.g., Google Colab).
 
-Code Overview
-Mount Google Drive
-Mount Google Drive to access the dataset:
+## Code Overview
 
-python
+## Mount Google Drive
 from google.colab import drive
 drive.mount('/content/drive')
-Import Libraries
-Import the necessary libraries:
 
-python
+## Import Libraries
 import os
 import numpy as np
 import matplotlib.pyplot as plt
@@ -50,16 +45,12 @@ from tensorflow.keras import layers, models
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.optimizers import Adam
 import string
-Load Dataset
-Load the EMNIST ByClass dataset:
 
-python
+## Load Dataset
 mat_file_path = '/content/drive/MyDrive/Colab_Notebooks/Datasets/EMNIST/emnist-byclass.mat'
 emnist_data = sio.loadmat(mat_file_path)
-Data Preprocessing
-Preprocess the data:
 
-python
+## Data Preprocessing
 # Extract training images and labels
 X_train = emnist_data['dataset'][0][0][0][0][0][0]
 y_train = emnist_data['dataset'][0][0][0][0][0][1]
@@ -84,10 +75,8 @@ y_test = y_test.flatten().astype(np.int64)
 num_classes = len(np.unique(y_train))
 y_train_cat = to_categorical(y_train, num_classes)
 y_test_cat = to_categorical(y_test, num_classes)
-Model Definition
-Define the CNN model:
 
-python
+## Model Definition
 model = models.Sequential([
     layers.Conv2D(64, (3, 3), activation='relu', input_shape=(28, 28, 1)),
     layers.BatchNormalization(),
@@ -103,23 +92,17 @@ model = models.Sequential([
     layers.Dropout(0.5),
     layers.Dense(num_classes, activation='softmax')
 ])
-Model Compilation and Training
-Compile and train the model:
 
-python
+## Model Compilation and Training
 optimizer = Adam(learning_rate=0.001)
 model.compile(optimizer=optimizer, loss='categorical_crossentropy', metrics=['accuracy'])
 history = model.fit(X_train, y_train_cat, validation_data=(X_test, y_test_cat), epochs=15, batch_size=256)
-Model Evaluation
-Evaluate the model on the test data:
 
-python
+## Model Evaluation
 test_loss, test_acc = model.evaluate(X_test, y_test_cat, verbose=2)
 print(f'Test accuracy: {test_acc:.4f}')
-Visualization
-Plot training and validation accuracy and loss:
 
-python
+## Visualization
 plt.figure(figsize=(12, 4))
 
 plt.subplot(1, 2, 1)
@@ -140,10 +123,8 @@ plt.legend()
 
 plt.tight_layout()
 plt.show()
-Prediction
-Function to predict and display the label for a given sample index:
 
-python
+## Prediction
 def predict_and_display(sample_index):
     image = X_test[sample_index]
     true_label = y_test[sample_index]

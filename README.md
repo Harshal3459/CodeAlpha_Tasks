@@ -284,11 +284,11 @@ def preserve_aspect_resize(image, target_dims):
     target_w, target_h = target_dims
     image = tf.image.resize(image, (target_h, target_w), preserve_aspect_ratio=True)
 
-    ### Calculate required padding
+### Calculate required padding
     pad_vert = target_h - tf.shape(image)[0]
     pad_horz = target_w - tf.shape(image)[1]
 
-    ### Apply symmetric padding
+### Apply symmetric padding
     image = tf.pad(
         image,
         [
@@ -346,12 +346,12 @@ def display_samples(dataset, num_samples=8):
     for i in range(num_samples):
         ax = plt.subplot(3, 3, i + 1)
 
-        ### Process image
+### Process image
         img = images[i].numpy()
         img = np.squeeze(img, axis=-1)
         img = (img * 255).astype(np.uint8)
 
-        ### Decode label
+### Decode label
         label = labels[i]
         label_chars = [c for c in label if c != PAD_TOKEN]
         decoded_text = tf.strings.reduce_join(

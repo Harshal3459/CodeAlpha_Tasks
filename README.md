@@ -141,7 +141,7 @@ sample_indices = [10, 200, 600, 1200, 3200]
 for idx in sample_indices:
     predict_and_display(idx)
 
-# Handwriting Words Recognition(part2)
+# Handwritten Words Recognition(part2)
 
 This repository contains a TensorFlow/Keras implementation for recognizing handwritten text using the IAM Handwriting Database. The code includes data preprocessing, model training, evaluation, and visualization.
 

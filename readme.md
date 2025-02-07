@@ -51,27 +51,27 @@ mat_file_path = '/content/drive/MyDrive/Colab_Notebooks/Datasets/EMNIST/emnist-b
 emnist_data = sio.loadmat(mat_file_path)
 
 ## Data Preprocessing
-# Extract training images and labels
+### Extract training images and labels
 X_train = emnist_data['dataset'][0][0][0][0][0][0]
 y_train = emnist_data['dataset'][0][0][0][0][0][1]
 
-# Extract testing images and labels
+### Extract testing images and labels
 X_test = emnist_data['dataset'][0][0][1][0][0][0]
 y_test = emnist_data['dataset'][0][0][1][0][0][1]
 
-# Reshape and normalize images
+### Reshape and normalize images
 X_train = X_train.reshape(-1, 28, 28).astype('float32') / 255.0
 X_test = X_test.reshape(-1, 28, 28).astype('float32') / 255.0
 
-# Transpose and flip images for correct orientation
+### Transpose and flip images for correct orientation
 X_train = np.flip(np.transpose(X_train, (0, 2, 1)), axis=2).reshape(-1, 28, 28, 1)
 X_test = np.flip(np.transpose(X_test, (0, 2, 1)), axis=2).reshape(-1, 28, 28, 1)
 
-# Flatten labels
+### Flatten labels
 y_train = y_train.flatten().astype(np.int64)
 y_test = y_test.flatten().astype(np.int64)
 
-# Convert labels to one-hot encoding
+### Convert labels to one-hot encoding
 num_classes = len(np.unique(y_train))
 y_train_cat = to_categorical(y_train, num_classes)
 y_test_cat = to_categorical(y_test, num_classes)

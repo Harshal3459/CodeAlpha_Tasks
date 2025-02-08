@@ -10,8 +10,8 @@ The EMNIST ByClass dataset is a set of handwritten character images, including b
 
 ## Project Structure
 
-- `Task1_part1.py`: py file containing the complete code for data preprocessing, model training, evaluation, and visualization.
-- `Task1_part2.py`: py file containing the complete code for data preprocessing, model training, evaluation, and visualization.
+- `Characters.py`: py file containing the complete code for data preprocessing, model training, evaluation, and visualization for emnist character recognization
+- `Words.py`: py file containing the complete code for data preprocessing, model training, evaluation, and visualization for word recognization
 - `README.md`: This README file.
 
 ## Dependencies
